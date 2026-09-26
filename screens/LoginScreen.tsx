@@ -4,6 +4,8 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Image,
+  ScrollView,
 } from 'react-native';
  
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -29,7 +31,12 @@ export default function LoginScreen({ navigation }: Props) {
  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
+      <ScrollView>
+        <Image
+          source={require('../assets/Gemini_Generated_Image_18v3hc18v3hc18v3.png')}
+          style={{ width: 1150, height: 600, alignSelf: 'center', marginBottom: 20 }}
+        />
+        <Text style={styles.title}>
         To-Do List
       </Text>
  
@@ -58,6 +65,7 @@ export default function LoginScreen({ navigation }: Props) {
         title="Entrar"
         onPress={handleLogin}
       />
+    </ScrollView>
     </View>
   );
 }
@@ -91,4 +99,4 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
   },
-});
+}); 

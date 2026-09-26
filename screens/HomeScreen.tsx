@@ -1,11 +1,4 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
- 
+import { Text,View, StyleSheet, FlatList ,ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { Task } from '../types/Task';
@@ -36,6 +29,7 @@ export default function HomeScreen({
  
   return (
     <View style={styles.container}>
+      <ScrollView>
       <Button
         title="+ Nova tarefa"
         onPress={() =>
@@ -64,6 +58,7 @@ export default function HomeScreen({
           )}
         />
       )}
+      </ScrollView>
     </View>
   );
 }
