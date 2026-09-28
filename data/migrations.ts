@@ -23,7 +23,6 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
     currentDbVersion = 2;
   }
 
-  // Caso já tenha criado a tabela na versão 1 sem descrição, adiciona a coluna
   if (currentDbVersion === 1) {
     await db.execAsync(`
       ALTER TABLE tasks ADD COLUMN description TEXT;

@@ -1,7 +1,6 @@
 import { type SQLiteDatabase } from 'expo-sqlite';
 import { Task } from '../types/Task';
 
-// Procura todas as tarefas no banco
 export async function getTasks(db: SQLiteDatabase): Promise<Task[]> {
   const result = await db.getAllAsync<{ id: string; title: string; description: string | null; completed: number }>(
     'SELECT * FROM tasks;'
@@ -15,7 +14,6 @@ export async function getTasks(db: SQLiteDatabase): Promise<Task[]> {
   }));
 }
 
-// Inserir nova tarefa com título e descrição
 export async function addTask(db: SQLiteDatabase, task: Task) {
   await db.runAsync(
     'INSERT INTO tasks (id, title, description, completed) VALUES (?, ?, ?, ?);',
@@ -23,7 +21,6 @@ export async function addTask(db: SQLiteDatabase, task: Task) {
   );
 }
 
-// Alternar status (Pendente / Concluída)
 export async function toggleTask(db: SQLiteDatabase, id: string, completed: boolean) {
   await db.runAsync(
     'UPDATE tasks SET completed = ? WHERE id = ?;',
@@ -31,7 +28,6 @@ export async function toggleTask(db: SQLiteDatabase, id: string, completed: bool
   );
 }
 
-// Editar título e descrição da tarefa
 export async function updateTask(db: SQLiteDatabase, id: string, title: string, description: string) {
   await db.runAsync(
     'UPDATE tasks SET title = ?, description = ? WHERE id = ?;',
@@ -39,7 +35,6 @@ export async function updateTask(db: SQLiteDatabase, id: string, title: string, 
   );
 }
 
-// Eliminar tarefa
 export async function deleteTask(db: SQLiteDatabase, id: string) {
   await db.runAsync('DELETE FROM tasks WHERE id = ?;', [id]);
 }

@@ -22,7 +22,6 @@ export default function HomeScreen({ navigation }: Props) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const db = useSQLiteContext();
 
-  // Função para buscar as tarefas atualizadas do SQLite
   async function loadTasks() {
     try {
       const data = await getTasks(db);
@@ -32,14 +31,12 @@ export default function HomeScreen({ navigation }: Props) {
     }
   }
 
-  // Recarrega a lista de tarefas toda vez que a tela ganha foco
   useFocusEffect(
     useCallback(() => {
       loadTasks();
     }, [db])
   );
 
-  // Função para alternar entre Pendente e Concluída
   async function handleToggle(id: string) {
     const task = tasks.find((t) => t.id === id);
     if (!task) return;
@@ -49,13 +46,11 @@ export default function HomeScreen({ navigation }: Props) {
     loadTasks(); // Atualiza a lista exibida
   }
 
-  // Função para apagar uma tarefa
   async function handleDelete(id: string) {
     await deleteTask(db, id);
     loadTasks(); // Atualiza a lista exibida
   }
 
-  // Função para navegar até a tela de edição
   function handleEdit(task: Task) {
     navigation.navigate('EditTask', { task });
   }
